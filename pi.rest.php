@@ -51,12 +51,12 @@ class Rest
 		$this->EE->load->library('curl');
 
 		// Call request by name
-		if ( $name = $this->EE->TMPL->fetch_param('name'))
+		if (($name = $this->EE->TMPL->fetch_param('name')))
 		{
 			$response = self::_run_saved_request('name', $name);
 		}
 
-		else if ($id = $this->EE->TMPL->fetch_param('id') )
+		elseif (($id = $this->EE->TMPL->fetch_param('id')))
 		{
 			$response = self::_run_saved_request('id', $id);
 		}
@@ -94,10 +94,10 @@ class Rest
 			/* 'rest_result' hook.
 			/*  - Modify result array
 			*/
-				if ($this->EE->extensions->active_hook('rest_result') === TRUE)
-				{
-					$response = $this->EE->extensions->call('rest_result', $response, $this->total_results);
-				}
+			if ($this->EE->extensions->active_hook('rest_result') === TRUE)
+			{
+				$response = $this->EE->extensions->call('rest_result', $response, $this->total_results);
+			}
 			// -------------------------------------------
 
 			// Only bother trying to parse if we get valid response
@@ -118,10 +118,11 @@ class Rest
 		/* 'rest_tagdata_end' hook.
 		/*  - Modify final tagdata to be returned
 		*/
-			if ($this->EE->extensions->active_hook('rest_tagdata_end') === TRUE)
-			{
-				$return = $this->EE->extensions->call('rest_tagdata_end', $return);
-			}
+		if ($this->EE->extensions->active_hook('rest_tagdata_end') === TRUE)
+		{
+			$return = $this->EE->extensions->call('rest_tagdata_end', $return);
+		}
+
 		// -------------------------------------------
 
 		// Only return if there is something worth returning

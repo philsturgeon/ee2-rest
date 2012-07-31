@@ -24,13 +24,31 @@ Rest module can do more than just grab information from predefined requests. You
 
 ## Parameters
 
+* name - Name of the saved request
+
+* id - ID of the saved request
+
+* record_type - Single or Multiple records? 
+	* Default: "m"
+	* Options: "s" or "m"
+
+* base - By default you will loop through the top level of the data. Use this to loop through nested arrays.
+	* Default: _empty_
+	* Example: data,links
+
+* limit - Number of results to loop through inside the base element.
+	* Default: _all_	
+
+* offset - Where to start looping 
+	* Default: _all_
+
 * format - What format should the content be encoded in? This sets the Accept HTTP header
 	* Default: "xml”
-	* Options: "xml", "atom", "rss", "json", "serialized", "csv"
+	* Options: "xml", "atom", "rss", "json", "serialized" or "csv"
 
 * verb - Also alias "method", picks which HTTP method to use.
 	* Default: "get"
-	* Options: "get", "post", "put", "delete"
+	* Options: "get", "post", "put" or "delete"
 
 Parameters can be added even if you call a saved request, it will merge or override params saved in the CP.
 
