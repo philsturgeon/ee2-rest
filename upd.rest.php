@@ -12,9 +12,9 @@
 class Rest_upd
 {
 	public $module_name = 'REST';
-	public $version		= '1.6.0';
+	public $version		= '1.6.1';
 
-    function __construct( $switch = TRUE )
+    public function __construct($switch = TRUE)
     {
 		$this->EE =& get_instance();
     }
