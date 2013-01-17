@@ -20,10 +20,9 @@ class Rest_mcp
 	 *
 	 * Set's form validation and properties to be used on each page
 	 *
-	 * @access	public
 	 * @return	void
 	 */
-	function __construct()
+	public function __construct()
 	{
 		// Make a local reference to the ExpressionEngine super object
 		$this->EE =& get_instance();
@@ -32,7 +31,7 @@ class Rest_mcp
 		define('REST_PARAMS', 'C=addons_modules'.AMP.'M=show_module_cp'.AMP.'module='.$this->module_name);
 		define('REST_URL', BASE.AMP.REST_PARAMS);
 
-		$this->data = stdObject;
+		$this->data = stdClass;
 		$this->data->base = REST_URL;
 
 		$this->EE->load->library('form_validation');
