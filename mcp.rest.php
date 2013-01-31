@@ -31,7 +31,7 @@ class Rest_mcp
 		define('REST_PARAMS', 'C=addons_modules'.AMP.'M=show_module_cp'.AMP.'module='.$this->module_name);
 		define('REST_URL', BASE.AMP.REST_PARAMS);
 
-		$this->data = stdClass;
+		$this->data = new stdClass;
 		$this->data->base = REST_URL;
 
 		$this->EE->load->library('form_validation');
