@@ -12,7 +12,7 @@
 class Rest_upd
 {
 	public $module_name = 'REST';
-	public $version		= '1.6.1';
+	public $version		= '1.6.2';
 
     public function __construct($switch = TRUE)
     {

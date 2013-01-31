@@ -1,42 +1,50 @@
+1.6.2 
+
+* Added missing "new" keyword from stdClass.
+
+1.6.1
+
+* Fixed undefined stdObject error.
+
 1.6.0
 
-    * Added pagination
-    * Added basic documentation in the form of a README
+* Added pagination
+* Added basic documentation in the form of a README
 
 1.5.4
 
-    * Added record_type="[single|multiple]" so that non-array data will work too. Multiple is default.
-    * Tested with EE 2.4
+* Added record_type="[single|multiple]" so that non-array data will work too. Multiple is default.
+* Tested with EE 2.4
 
 1.5.3
 
-    * CSV fields wrapped with single quotes or no quotes will now work, not just those with double quotes.
-    * Supports v2.1.3 changing lang.rest.php to rest_lang.php.
+* CSV fields wrapped with single quotes or no quotes will now work, not just those with double quotes.
+* Supports v2.1.3 changing lang.rest.php to rest_lang.php.
 
 1.5.2
 
-    * Fixed an issue with XML/RSS stripping CDATA.
+* Fixed an issue with XML/RSS stripping CDATA.
 
 1.5.1
 
-	* Avoid strtotime on unix timestamps.
-	* Hide errors if an invalid base is set, just returns an empty result.
-	* Updated Curl library for improved compatibility.
+* Avoid strtotime on unix timestamps.
+* Hide errors if an invalid base is set, just returns an empty result.
+* Updated Curl library for improved compatibility.
 
 1.5.0
 
-	* Added base=”” tag so you can skip down a few levels. base=“comments,data” is useful for Facebook Graph.
-    * Use format=”” to any tag that should be a human readable date, no matter the format that comes from the API.
+* Added base=”” tag so you can skip down a few levels. base=“comments,data” is useful for Facebook Graph.
+* Use format=”” to any tag that should be a human readable date, no matter the format that comes from the API.
 
 1.4.0
 
-    * Global Variables can now be passed to parameters. E.g: param:foo="{bar}"
-    * Added limit="" and offset="" parameters to help with restricting results.
-    * Improved EngineHosting support, i.e no more basedir error messages.
+* Global Variables can now be passed to parameters. E.g: param:foo="{bar}"
+* Added limit="" and offset="" parameters to help with restricting results.
+* Improved EngineHosting support, i.e no more basedir error messages.
 
 1.3.0
 
-    * Now supports RSS and Atom feeds.
-    * Extra params can be added in the template tag to saved requests.
-    * Added debug=“yes”.
-    * Users running in safe mode (WHY?!) will no longer get PHP errors.
+* Now supports RSS and Atom feeds.
+* Extra params can be added in the template tag to saved requests.
+* Added debug=“yes”.
+* Users running in safe mode (WHY?!) will no longer get PHP errors.
