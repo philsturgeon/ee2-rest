@@ -93,7 +93,7 @@ class Rest_mcp
 			'site_id' => config_item('site_id'))
 		)->result();
 
-		return $this->EE->load->view('index', $this->data, TRUE);
+		return $this->EE->load->view('index', get_object_vars($this->data), TRUE);
 	}
 
 	// --------------------------------------------------------------------
@@ -137,7 +137,7 @@ class Rest_mcp
 		$this->data->form_action = REST_PARAMS.AMP.'method=add';
 		$this->data->request =& $request;
 
-		return $this->EE->load->view('form', $this->data, TRUE);
+		return $this->EE->load->view('form', get_object_vars($this->data), TRUE);
 	}
 
 	// --------------------------------------------------------------------
@@ -199,7 +199,7 @@ class Rest_mcp
 		$this->data->form_action = REST_PARAMS.AMP.'method=edit';
 		$this->data->request =& $request;
 		
-		return $this->EE->load->view('form', $this->data, TRUE);
+		return $this->EE->load->view('form', get_object_vars($this->data), TRUE);
 	}
 
 	// --------------------------------------------------------------------
@@ -249,7 +249,7 @@ class Rest_mcp
 		// Set the form action
 		$this->data->form_action = REST_PARAMS.AMP.'method=delete';
 
-		return $this->EE->load->view('confirm_delete', $this->data, TRUE);
+		return $this->EE->load->view('confirm_delete', get_object_vars($this->data), TRUE);
 	}
 
 	// --------------------------------------------------------------------
