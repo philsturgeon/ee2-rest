@@ -86,7 +86,7 @@ class Rest_mcp
 		));
 
 		// Show the current page to be REST
-		$this->EE->cp->set_variable('cp_page_title', lang('rest_module_name'));
+		$this->EE->view->cp_page_title = lang('rest_module_name');
 
 		// Assign list of saved REST Requests to the view
 		$this->data->rest_requests = $this->EE->db->get_where('rest_requests', array(
@@ -109,7 +109,8 @@ class Rest_mcp
 	public function add()
 	{
 		$this->EE->cp->set_breadcrumb(REST_URL, lang('rest_module_name'));
-		$this->EE->cp->set_variable('cp_page_title', lang('add_request'));
+		$this->EE->view->cp_page_title = lang('add_request');
+
 
 		if ($this->EE->form_validation->run() )
 		{
@@ -153,7 +154,7 @@ class Rest_mcp
 	public function edit()
 	{
 		$this->EE->cp->set_breadcrumb(REST_URL, lang('rest_module_name'));
-		$this->EE->cp->set_variable('cp_page_title', lang('edit_request'));
+		$this->EE->view->cp_page_title = lang('edit_request');
 
 		$id = $this->EE->input->get_post('request_id');
 
