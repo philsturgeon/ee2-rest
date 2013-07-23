@@ -2,35 +2,35 @@
 /**
  * REST Add-on
  *
- * @package		ExpressionEngine 2
- * @subpackage	Third Party
- * @category	Modules
- * @author		Phil Sturgeon
- * @link		http://devot-ee.com/add-ons/rest/
+ * @package     ExpressionEngine 2
+ * @subpackage  Third Party
+ * @category    Modules
+ * @author      Phil Sturgeon
+ * @link        http://devot-ee.com/add-ons/rest/
  */
 class Rest
 {
-	public $return_data	= '';
+	public $return_data = '';
 
-    private $supported_formats = array(
-		'xml' 				=> 'application/xml',
-		'atom'				=> 'application/atom+xml',
-		'rss'				=> 'application/rss+xml',
-		'json' 				=> 'application/json',
-		'serialized' 		=> 'application/vnd.php.serialized',
-    	'csv'				=> 'text/csv'
+	private $supported_formats = array(
+		'xml'               => 'application/xml',
+		'atom'              => 'application/atom+xml',
+		'rss'               => 'application/rss+xml',
+		'json'              => 'application/json',
+		'serialized'        => 'application/vnd.php.serialized',
+		'csv'               => 'text/csv'
 	);
 
-    private $auto_detect_formats = array(
-		'application/xml'		=> 'xml',
-		'text/xml'				=> 'xml',
-		'application/atom+xml'	=> 'atom',
-		'application/rss+xml'	=> 'rss',
-		'application/json'		=> 'json',
-		'text/json'				=> 'json',
-		'text/csv'				=> 'csv',
-		'application/csv'		=> 'csv',
-    	'application/vnd.php.serialized' => 'serialize'
+	private $auto_detect_formats = array(
+		'application/xml'       => 'xml',
+		'text/xml'              => 'xml',
+		'application/atom+xml'  => 'atom',
+		'application/rss+xml'   => 'rss',
+		'application/json'      => 'json',
+		'text/json'             => 'json',
+		'text/csv'              => 'csv',
+		'application/csv'       => 'csv',
+		'application/vnd.php.serialized' => 'serialize'
 	);
 
 	// --------------------------------------------------------------------
@@ -40,13 +40,13 @@ class Rest
 	 *
 	 * Called by {exp:rest} the construct is the center of all logic for this plugin
 	 *
-	 * @access	private
-	 * @param	int
-	 * @return	bool
+	 * @access  private
+	 * @param   int
+	 * @return  bool
 	 */
 	public function Rest()
-    {
-        $this->EE =& get_instance();
+	{
+		$this->EE =& get_instance();
 
 		$this->EE->load->library('curl');
 
@@ -132,7 +132,7 @@ class Rest
 		}
 
 		return '';
-    }
+	}
 
 	// --------------------------------------------------------------------
 
@@ -141,9 +141,9 @@ class Rest
 	 *
 	 * Load a saved request and run it
 	 *
-	 * @access	private
-	 * @param	string
-	 * @return	string
+	 * @access  private
+	 * @param   string
+	 * @return  string
 	 */
 	private function _run_saved_request($field, $name)
 	{
@@ -169,13 +169,13 @@ class Rest
 	 *
 	 * Load a saved request and run it
 	 *
-	 * @access	private
-	 * @param	string
-	 * @return	string
+	 * @access  private
+	 * @param   string
+	 * @return  string
 	 */
-    private function _call($method, $url, $format = NULL, $params = array(), $record_type = 'm')
-    {
-    	// Check to see if format is in the supported list
+	private function _call($method, $url, $format = NULL, $params = array(), $record_type = 'm')
+	{
+		// Check to see if format is in the supported list
 		$mime_type = array_key_exists($format, $this->supported_formats)
 
 			// It is a supported format, grab the MIME for them
@@ -200,25 +200,25 @@ class Rest
 			$url .= is_array($params) ? http_build_query($params) : $params;
 		}
 
-        // Initialize cURL session
-        $this->EE->curl->create($url);
+		// Initialize cURL session
+		$this->EE->curl->create($url);
 
 		$this->EE->curl->http_header('User-Agent: ExpressionEngine '.config_item('app_version'));
 
 		// Tell that server what we want. Hmm yeah... thats it.
 		$this->EE->curl->http_header('Accept: '.$mime_type);
 
-        // If authentication is enabled use it
-        if ( ! empty($this->http_auth) && ! empty($this->http_user))
-        {
-        	$this->EE->curl->http_login($this->http_user, $this->http_pass, $this->http_auth);
-        }
+		// If authentication is enabled use it
+		if ( ! empty($this->http_auth) && ! empty($this->http_user))
+		{
+			$this->EE->curl->http_login($this->http_user, $this->http_pass, $this->http_auth);
+		}
 
-        // We still want the response even if there is an error code over 400
-        $this->EE->curl->option('failonerror', FALSE);
+		// We still want the response even if there is an error code over 400
+		$this->EE->curl->option('failonerror', FALSE);
 		
 		// Stop it trying to verify SSL, potentially insecure...
-        $this->EE->curl->option('ssl_verifypeer', FALSE);
+		$this->EE->curl->option('ssl_verifypeer', FALSE);
 
 		if ( ! ini_get('safe_mode') AND ! ini_get('open_basedir'))
 		{
@@ -227,27 +227,27 @@ class Rest
 		}
 		
 		// Follow the rabbit wherever it takes you
-        $this->EE->curl->option('connecttimeout', 5);
+		$this->EE->curl->option('connecttimeout', 5);
 
-        // Call the correct method with parameters
+		// Call the correct method with parameters
 		if ($method !== 'get')
 		{
 			$this->EE->curl->{$method}($params);
 		}
 
-        // Execute and return the response from the REST server
-        $response = $this->EE->curl->execute();
+		// Execute and return the response from the REST server
+		$response = $this->EE->curl->execute();
 
-        // Format and return
-        $data = $this->_format_response($format, $response);
+		// Format and return
+		$data = $this->_format_response($format, $response);
 
-        // M or Multiple means its an array (default)
-        // S or Single means it's only one item, so make it an array
-        // Otherwise the looping will fail!
-        if (in_array($record_type, array('s', 'single')))
-        {
-        	$data = array($data);
-        }
+		// M or Multiple means its an array (default)
+		// S or Single means it's only one item, so make it an array
+		// Otherwise the looping will fail!
+		if (in_array($record_type, array('s', 'single')))
+		{
+			$data = array($data);
+		}
 
 		// Use a root element to specifiy which element is base
 		if ($base = $this->EE->TMPL->fetch_param('base', NULL))
@@ -271,7 +271,7 @@ class Rest
 		}
 
 		return $data;
-    }
+	}
 
 	// --------------------------------------------------------------------
 
@@ -280,8 +280,8 @@ class Rest
 	 *
 	 * Set a format to send, (preset or MIME type supported
 	 *
-	 * @access	private
-	 * @param	string
+	 * @access  private
+	 * @param   string
 	 * @return mixed
 	 */
 	private function _format_response($suggested_format, $response)
@@ -318,9 +318,9 @@ class Rest
 	 *
 	 * Take a totally mixed item and parse it into an array compatible with EE's Template library
 	 *
-	 * @access	private
-	 * @param	mixed
-	 * @return	string
+	 * @access  private
+	 * @param   mixed
+	 * @return  string
 	 */
 	private function _force_array($var, $level = 1)
 	{
@@ -371,7 +371,7 @@ class Rest
 		* Due to its recursive nature, unserialize_xml() will also support SimpleXMLElement objects and arrays as input
 		* Uses simplexml_load_string() for XML parsing, see SimpleXML documentation for more info
 	 */
-    private function _xml($input, $recurse = false)
+	private function _xml($input, $recurse = false)
 	{
 		// Get input, loading an xml string with simplexml if its the top level of recursion
 		$data = ((!$recurse) && is_string($input)) ? simplexml_load_string($input, 'SimpleXMLElement', LIBXML_NOCDATA): $input;
@@ -423,7 +423,7 @@ class Rest
 		}
 
 		return $data;
-    }
+	}
 
 	private function _atom($input)
 	{
@@ -439,10 +439,10 @@ class Rest
 		return isset($data['channel']['item']) ? $data['channel']['item'] : array();
 	}
 
-    // Format HTML for output
-    // This function is DODGY! Not perfect CSV support but works with my REST_Controller
-    private function _csv($string)
-    {
+	// Format HTML for output
+	// This function is DODGY! Not perfect CSV support but works with my REST_Controller
+	private function _csv($string)
+	{
 		$data = array();
 
 		// Splits
@@ -461,19 +461,19 @@ class Rest
 		}
 
 		return $data;
-    }
+	}
 
-    // Encode as JSON
-    private function _json($string)
-    {
-    	return json_decode(trim($string));
-    }
+	// Encode as JSON
+	private function _json($string)
+	{
+		return json_decode(trim($string));
+	}
 
-    // Encode as Serialized array
-    private function _serialize($string)
-    {
-    	return unserialize(trim($string));
-    }
+	// Encode as Serialized array
+	private function _serialize($string)
+	{
+		return unserialize(trim($string));
+	}
 
 }
 
