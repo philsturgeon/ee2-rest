@@ -36,15 +36,12 @@ class Rest
 	// --------------------------------------------------------------------
 
 	/**
-	 * __construct()
-	 *
 	 * Called by {exp:rest} the construct is the center of all logic for this plugin
 	 *
-	 * @access  private
 	 * @param   int
 	 * @return  bool
 	 */
-	public function Rest()
+	public function __construct()
 	{
 		$this->EE =& get_instance();
 
@@ -84,6 +81,8 @@ class Rest
 			// This is the least we need
 			$response = $this->_call($verb, $url, $format);
 		}
+
+		$return = null;
 
 		// Right, we have a response, lets get some output
 		if ( ! empty($response))
@@ -131,7 +130,7 @@ class Rest
 			return $this->return_data = $return;
 		}
 
-		return '';
+		return;
 	}
 
 	// --------------------------------------------------------------------
