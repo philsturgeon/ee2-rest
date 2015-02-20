@@ -191,6 +191,7 @@ class Rest
 				$params=$params.'&'.str_replace('param:', '', $key). '='. $this->EE->TMPL->parse_globals($var);
 			}
 		}
+		
 		// If it is GET then shove the params into the URL
 		if ($method == 'get' && ! empty($params))
 		{
