@@ -188,7 +188,7 @@ class Rest
 		{
 			if (strpos($key, 'param:') !== FALSE)
 			{
-				$params[str_replace('param:', '', $key)] = $this->EE->TMPL->parse_globals($var);
+				$params=$params.'&'.str_replace('param:', '', $key). '='. $this->EE->TMPL->parse_globals($var);
 			}
 		}
 
