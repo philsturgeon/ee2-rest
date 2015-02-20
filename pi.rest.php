@@ -188,10 +188,12 @@ class Rest
 		{
 			if (strpos($key, 'param:') !== FALSE)
 			{
-				$params[str_replace('param:', '', $key)] = $this->EE->TMPL->parse_globals($var);
+	
+				$params=$params.'&'.str_replace('param:', '', $key). '='. $this->EE->TMPL->parse_globals($var);
+				
 			}
 		}
-
+//print_r($params);
 		// If it is GET then shove the params into the URL
 		if ($method == 'get' && ! empty($params))
 		{
