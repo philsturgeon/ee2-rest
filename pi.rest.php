@@ -123,6 +123,12 @@ class Rest
 		}
 
 		// -------------------------------------------
+		
+		// If no results, return EE no results
+		if ( $response == new stdClass() )
+		{
+			return $this->return_data = $this->EE->TMPL->no_results();
+		}
 
 		// Only return if there is something worth returning
 		if ( ! empty($return))
