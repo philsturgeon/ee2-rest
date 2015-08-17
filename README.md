@@ -1,6 +1,6 @@
 # Rest
 
-_**Warning:** This is _extremely_ deprecated. This is only here because a few years ago I was working on this and selling it, then I stopped working on it, and stopped selling it. I haven't used EE in f**king ages thanks be, and this is only here so that those who paid for it aren't left in the lurch. You can use it, but heck knows if it works with latest EE versions, and it's built on top of a cURL library I mashed out in 2009 and haven't looked at much since._
+_**Warning:** This is extremely deprecated. This is only here because a few years ago I was working on this and selling it, then I stopped working on it, and stopped selling it. I haven't used EE in f**king ages thanks be, and this is only here so that those who paid for it aren't left in the lurch. You can use it, but heck knows if it works with latest EE versions, and it's built on top of a cURL library I mashed out in 2009 and haven't looked at much since._
 
 Integrate RESTful API’s into your ExpressionEngine 2.0 website with this Rest module. You can list Tweets, search for Digg articles, show off Flickr photographs, search YouTube for videos and interact with any open RESTful API.
 
